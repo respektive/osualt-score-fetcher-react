@@ -17,7 +17,7 @@ export default function Home() {
     <Grid item sx={{ pt: 10, pl: 25, pr: 25}}>
         <Paper sx={{ padding: 5}}>
             <Typography variant="h4">Click this button to start fetching your scores:</Typography>
-            <Button variant="contained" href="https://osu.ppy.sh/oauth/authorize?client_id=10081&redirect_uri=https://osualt.respektive.pw/oauth&response_type=code&scope=identify%20public">Login with osu!</Button>
+            <Button variant="contained" href="https://osu.ppy.sh/oauth/authorize?client_id=10081&redirect_uri=https://oaltapi.respektive.pw/oauth&response_type=code&scope=identify%20public">Login with osu!</Button>
             
             <Typography variant="h6">
             Upon logging in with osu! you get redirected to the <Link href="/status" underline="hover">status page</Link>.
