@@ -39,7 +39,7 @@ export default function Status() {
                 <Typography variant="h4">List of users currently being fetched:</Typography>
                 {current.map(user => (
                     <Paper sx={{ width: '80%', mt: '10px'}}>
-                    <Typography variant="h6" key={user.username}>{user.username} | {user.progress}</Typography>
+                    <Typography variant="h6" key={user.username}>{user.username} | {user.progress} | {user.percentage ? user.percentage.toFixed(2) : "0.0"}%</Typography>
                     <LinearProgress sx={{ width: '80%' }} variant="determinate" value={user.percentage} key={user.percentage}/>
                     </Paper>
                 ))}
