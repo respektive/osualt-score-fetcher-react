@@ -3,6 +3,7 @@ import Grid from '@mui/material/Grid'
 import LinearProgress from '@mui/material/LinearProgress'
 import Typography from '@mui/material/Typography'
 import Paper from '@mui/material/Paper'
+import Footer from './Footer'
 
 export default function Status() {
 
@@ -33,6 +34,7 @@ export default function Status() {
     }, [])
 
     return (
+        <>
         <Grid container align="center" justify="center" sx={{ padding: 5}}>
         
             <Grid item xs={6} sx={{ padding: '10px' }}> 
@@ -59,5 +61,7 @@ export default function Status() {
             </Grid>
             
         </Grid>
+        <Footer />
+        </>
     )
 }

@@ -4,10 +4,12 @@ import Paper from '@mui/material/Paper'
 import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
 import Link from '@mui/material/Link'
+import Footer from './Footer'
 
 export default function Home() {
   return (
-    <Grid
+    <>
+  <Grid
     container
     spacing={0}
     align="center"
@@ -35,5 +37,8 @@ export default function Home() {
         </Paper>
     </Grid>
   </Grid>
+
+  <Footer />
+  </>
   )
 }
