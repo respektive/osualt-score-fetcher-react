@@ -4,6 +4,7 @@ import LinearProgress from '@mui/material/LinearProgress'
 import Typography from '@mui/material/Typography'
 import Paper from '@mui/material/Paper'
 import Footer from './Footer'
+import { Tooltip } from "@mui/material"
 
 export default function Status() {
 
@@ -19,9 +20,8 @@ export default function Status() {
 
         const fetched = await fetch("https://osualt.respektive.pw/api/fetched")
         const fetchedJson = await fetched.json()
-        let usernames = fetchedJson.map(user => user.username)
-        usernames.sort(Intl.Collator().compare)
-        setFetched(usernames)
+        fetchedJson.sort((a,b) => Intl.Collator().compare(a.username, b.username))
+        setFetched(fetchedJson)
     }
 
     useEffect(() => {
@@ -52,9 +52,11 @@ export default function Status() {
                 <Grid container spacing={1}>
                 {fetched.map(user => (
                     <Grid item >
+                        <Tooltip title={ user.updated_at ? `Last fetched: ${user.updated_at.split("T")[0]}` : ""}>
                         <Paper sx={{ padding: '5px' }}>
-                        <Typography variant="h6" key={user}>{user}</Typography>
+                        <Typography variant="h6" key={user.user_id}>{user.username}</Typography>
                         </Paper>
+                        </Tooltip>
                     </Grid>
                 ))}
                 </Grid>
