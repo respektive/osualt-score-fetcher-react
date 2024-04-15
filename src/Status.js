@@ -14,11 +14,11 @@ export default function Status() {
     const [fetched, setFetched] = useState([])
 
     const fetchData = async () => {
-        const current = await fetch("https://osualt.respektive.pw/api/current")
+        const current = await fetch("/api/current")
         const currentJson = await current.json()
         setCurrent(currentJson)
 
-        const fetched = await fetch("https://osualt.respektive.pw/api/fetched")
+        const fetched = await fetch("/api/fetched")
         const fetchedJson = await fetched.json()
         fetchedJson.sort((a,b) => Intl.Collator().compare(a.username, b.username))
         setFetched(fetchedJson)
