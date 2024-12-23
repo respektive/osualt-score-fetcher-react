@@ -1,10 +1,10 @@
 import React, { useEffect, useState, useRef } from "react"
 import Grid from '@mui/material/Grid'
+import { DataGrid } from '@mui/x-data-grid'
 import LinearProgress from '@mui/material/LinearProgress'
 import Typography from '@mui/material/Typography'
 import Paper from '@mui/material/Paper'
 import Footer from './Footer'
-import { Tooltip } from "@mui/material"
 
 export default function Status() {
 
@@ -33,6 +33,14 @@ export default function Status() {
         }
     }, [])
 
+    const columns = [
+        { field: 'user_id', headerName: 'User ID', width: 150 },
+        { field: 'username', headerName: 'Username', width: 200 },
+        { field: 'updated_at', headerName: 'Last fetched', width: 200 },
+    ]
+
+    const paginationModel = { page: 0, pageSize: 10 };
+
     return (
         <>
         <Grid container align="center" justify="center" sx={{ padding: 5}}>
@@ -50,15 +58,16 @@ export default function Status() {
             <Grid item xs={6} sx={{ padding: '10px' }}>
                 <Typography variant="h4" sx={{ mb: '10px'}}>List of users already done fetching:</Typography>
                 <Grid container spacing={1}>
-                {fetched.map(user => (
-                    <Grid item >
-                        <Tooltip title={ user.updated_at ? `Last fetched: ${user.updated_at.split("T")[0]}` : ""}>
-                        <Paper sx={{ padding: '5px' }}>
-                        <Typography variant="h6" key={user.user_id}>{user.username}</Typography>
-                        </Paper>
-                        </Tooltip>
-                    </Grid>
-                ))}
+
+                <DataGrid
+                    rows={fetched.map((user, index) => ({ id: index, user_id: user.user_id, username: user.username, updated_at: user.updated_at }))}
+                    columns={columns}
+                    initialState={{ pagination: { paginationModel } }}
+                    pageSizeOptions={[5, 10, 15, 25, 50, 100]}
+                    disableRowSelectionOnClick
+                    sx={{ border: 0 }}
+                />
+
                 </Grid>
             </Grid>
             
