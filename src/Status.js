@@ -16,7 +16,6 @@ export default function Status() {
     const fetchData = async () => {
         const current = await fetch("/api/current")
         const currentJson = await current.json()
-        currentJson.sort((a,b) => new Date(b.date_added) - new Date(a.date_added))
         setCurrent(currentJson)
 
         const fetched = await fetch("/api/fetched")
