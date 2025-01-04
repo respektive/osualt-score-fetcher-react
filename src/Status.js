@@ -40,6 +40,7 @@ export default function Status() {
     ]
 
     const paginationModel = { page: 0, pageSize: 10 };
+    const sortModel = { field: 'updated_at', sort: 'desc' };
 
     return (
         <>
@@ -62,7 +63,7 @@ export default function Status() {
                 <DataGrid
                     rows={fetched.map((user, index) => ({ id: index, user_id: user.user_id, username: user.username, updated_at: user.updated_at }))}
                     columns={columns}
-                    initialState={{ pagination: { paginationModel } }}
+                    initialState={{ pagination: { paginationModel }, sorting: { sortModel: [sortModel] } }}
                     pageSizeOptions={[5, 10, 15, 25, 50, 100]}
                     disableRowSelectionOnClick
                     sx={{ border: 0 }}
